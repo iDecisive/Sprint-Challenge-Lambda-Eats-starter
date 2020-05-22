@@ -4,6 +4,9 @@ import './buildpizza.css';
 
 const BuildPizza = props => {
 
+    let {formState, setFormState} = props;
+
+
     return (
 
         <div className='pizzaForm'>
@@ -25,7 +28,7 @@ const BuildPizza = props => {
                 <label>
                     Pizza Size
 
-                    <select>
+                    <select name='size'>
 
                         <option>Small</option>
                         <option>Medium</option>
