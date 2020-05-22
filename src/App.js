@@ -41,7 +41,7 @@ const App = () => {
           <Link to='/'>Home</Link>  
         </nav>
 
-        <Link to='/pizza'>Build your pizza</Link>
+        <Link to='/pizza' id='buildlink'>Build your pizza</Link>
 
         <Route path='/pizza'>
 
