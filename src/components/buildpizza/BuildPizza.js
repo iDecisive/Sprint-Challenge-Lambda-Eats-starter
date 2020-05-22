@@ -1,12 +1,36 @@
 import React from "react";
+import * as yup from 'yup';
 
 import './buildpizza.css';
 
 const BuildPizza = props => {
 
-    //State
+    //Passed from App.js
 
-    let {formState, setFormState} = props;
+    let {formState, setFormState, inputErrors, setInputErrors} = props;
+
+    
+
+    //Input Validation Schema using yup
+
+    const formSchema = yup.object().shape({
+        name: yup
+            .string()
+            .min(2, "Type your name")
+            .required("Name is Required"),
+        size: yup
+            .string(),
+        mushrooms: yup
+            .boolean(),
+        onions: yup
+            .boolean(),
+        feta: yup
+            .boolean(),
+        garlic: yup
+            .boolean(),
+        instructions: yup
+            .string()
+      });
 
     //Functions
 
@@ -31,6 +55,7 @@ const BuildPizza = props => {
             })
 
         }
+
 
         
         console.log(formState)
@@ -132,7 +157,7 @@ const BuildPizza = props => {
 
                 </label>
 
-                <button>Submit order</button>
+                <button disabled={true}>Submit order</button>
 
             </form>
 

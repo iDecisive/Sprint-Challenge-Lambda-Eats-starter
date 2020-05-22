@@ -24,6 +24,16 @@ const App = () => {
 
   });
 
+  const [inputErrors, setInputErrors] = useState({ //State for form input validation errors
+    'name': '',
+    'size': '',
+    'mushrooms': '',
+    'onions': '',
+    'feta': '',
+    'garlic': '',
+    'instructions': ''
+  });
+
   return (
     <Router>
       <div className='App'>
@@ -36,7 +46,12 @@ const App = () => {
 
         <Route path='/pizza'>
 
-          <BuildPizza formState={formState} setFormState={setFormState} /> 
+          <BuildPizza 
+          formState={formState} 
+          setFormState={setFormState} 
+          
+          inputErrors={inputErrors}
+          setInputErrors={setInputErrors}/> 
 
         </Route>
 
