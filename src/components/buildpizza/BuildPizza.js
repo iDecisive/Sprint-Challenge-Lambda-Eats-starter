@@ -1,8 +1,15 @@
 import React from "react";
 import * as yup from 'yup';
 import axios from 'axios';
+import {
+    BrowserRouter as Router,
+    Route,
+    Link,
+    Redirect
+  } from "react-router-dom";
 
 import './buildpizza.css';
+import { render } from "@testing-library/react";
 
 const BuildPizza = props => {
 
@@ -105,6 +112,23 @@ const BuildPizza = props => {
             .then(response => {
 
                 console.log('Data response:', response.data);
+
+                document.querySelector('.pizzaForm').style.display = 'none';
+
+                render(
+
+                    <Router>
+                        <Redirect push to='/thanks' />
+
+                        <h1>Congrats! Pizza is on its way!</h1>
+
+                        <img src='https://media.giphy.com/media/9fuvOqZ8tbZOU/giphy.gif' alt='gif' />
+
+                    </Router>,
+                    
+                    document.querySelector('.App')
+                )
+                
 
             })
             .catch(err => {
@@ -211,8 +235,9 @@ const BuildPizza = props => {
 
                 </label>
 
-                <button disabled={true}>Submit order</button>
-
+                {/* <Link to='/thanks'> */}
+                    <button disabled={true}>Submit order</button>
+                {/* </Link> */}
             </form>
 
         </div>
