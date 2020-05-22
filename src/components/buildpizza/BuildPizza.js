@@ -4,7 +4,38 @@ import './buildpizza.css';
 
 const BuildPizza = props => {
 
+    //State
+
     let {formState, setFormState} = props;
+
+    //Functions
+
+    let onFormInput = event => {
+
+        if (event.target.type !== 'checkbox') {
+
+            setFormState({
+
+                ...formState,
+                [event.target.name]: event.target.value
+    
+            })
+
+        } else {
+
+            setFormState({
+
+                ...formState,
+                [event.target.name]: event.target.checked
+    
+            })
+
+        }
+
+        
+        console.log(formState)
+
+    }
 
 
     return (
@@ -20,7 +51,9 @@ const BuildPizza = props => {
 
                     <input 
                     type='text' 
-                    name='name'>
+                    name='name'
+                    onChange={event => onFormInput(event)}
+                    value={formState.name.value}>
                     </input>
 
                 </label>
@@ -28,7 +61,10 @@ const BuildPizza = props => {
                 <label>
                     Pizza Size
 
-                    <select name='size'>
+                    <select 
+                    name='size' 
+                    onChange={event => onFormInput(event)}
+                    value={formState.size.value}>
 
                         <option>Small</option>
                         <option>Medium</option>
@@ -45,7 +81,8 @@ const BuildPizza = props => {
 
                     <input 
                     type='checkbox' 
-                    name='mushrooms'>
+                    name='mushrooms'
+                    onChange={event => onFormInput(event)}>
                     </input>
 
                 </label>           
@@ -55,7 +92,8 @@ const BuildPizza = props => {
 
                     <input 
                     type='checkbox' 
-                    name='onions'>
+                    name='onions'
+                    onChange={event => onFormInput(event)}>
                     </input>
 
                 </label>    
@@ -65,7 +103,8 @@ const BuildPizza = props => {
 
                     <input 
                     type='checkbox' 
-                    name='feta'>
+                    name='feta'
+                    onChange={event => onFormInput(event)}>
                     </input>
 
                 </label>  
@@ -75,7 +114,8 @@ const BuildPizza = props => {
 
                     <input 
                     type='checkbox' 
-                    name='garlic'>
+                    name='garlic'
+                    onChange={event => onFormInput(event)}>
                     </input>
 
                 </label> 
@@ -85,7 +125,9 @@ const BuildPizza = props => {
 
                     <input 
                     type='text' 
-                    name='instructions'>
+                    name='instructions'
+                    onChange={event => onFormInput(event)}
+                    value={formState.instructions.value}>
                     </input>
 
                 </label>
