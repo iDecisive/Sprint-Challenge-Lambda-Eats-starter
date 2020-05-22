@@ -1,5 +1,6 @@
 import React from "react";
 import * as yup from 'yup';
+import axios from 'axios';
 
 import './buildpizza.css';
 
@@ -95,6 +96,24 @@ const BuildPizza = props => {
 
     }
 
+    let onFormSubmit = event => {
+
+        event.preventDefault()
+
+        axios
+            .post('https://reqres.in/api/users', formState)
+            .then(response => {
+
+                console.log('Data response:', response.data);
+
+            })
+            .catch(err => {
+
+                console.log(err);
+
+            });
+
+    }
 
     return (
 
@@ -102,7 +121,7 @@ const BuildPizza = props => {
 
             <h1>Build your pizza</h1>
 
-            <form>
+            <form onSubmit={event => onFormSubmit(event)}>
 
                 <label>
                     Name
