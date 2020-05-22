@@ -16,7 +16,7 @@ const BuildPizza = props => {
     const formSchema = yup.object().shape({
         name: yup
             .string()
-            .min(2, "Type your name")
+            .min(2, "Please type your name")
             .required("Name is Required"),
         size: yup
             .string(),
@@ -57,8 +57,41 @@ const BuildPizza = props => {
         }
 
 
+        //Sets state of inputErrors if there is an invalid input
+
+        yup
+            .reach(formSchema, event.target.name)
+            .validate(event.target.value)
+            .then(valid => {
+
+                setInputErrors({
+
+                    ...inputErrors,
+                    [event.target.name]: ''
+
+                });
+
+            })
+            .catch(err => {
+
+                setInputErrors({
+
+                    ...inputErrors,
+                    [event.target.name]: err.errors[0]
+
+                });
+
+            })
+
+            formSchema.isValid(formState).then(valid => { //Enables button if the input is valid
+
+                document.querySelector('form button').disabled = !valid;
+    
+            })
         
         console.log(formState)
+
+        event.persist()
 
     }
 
@@ -81,7 +114,9 @@ const BuildPizza = props => {
                     value={formState.name.value}>
                     </input>
 
-                </label>
+                    <h3 id='name-error'>{inputErrors.name}</h3>
+
+                </label> 
 
                 <label>
                     Pizza Size
